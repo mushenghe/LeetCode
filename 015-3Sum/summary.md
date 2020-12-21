@@ -1,9 +1,3 @@
-## 3Sum - Leetcode 15
-
-### Ideas: 2Sum --> nSum
-(one stragety from two sum to n sum)[https://leetcode-cn.com/problems/3sum/solution/yi-ge-fang-fa-tuan-mie-by-labuladong/] 
-**2Sum**
-
 # 3Sum - Leetcode 15
 Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? 
 Find all unique triplets in the array which gives the sum of zero.
@@ -48,15 +42,12 @@ Output: []
         } 
     }
     ```
-    :stars:<br/>
-    :bowtie:
+    :star: the usage of ```continue``` <br>
+    :star: add ```lo < hi``` in the while loop to prevent the
+            array to be out of range
 
-作者：labuladong
-链接：https://leetcode-cn.com/problems/3sum/solution/yi-ge-fang-fa-tuan-mie-by-labuladong/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
-    ```
+
 - pytest
 - sklearn
 - pandas

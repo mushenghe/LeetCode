@@ -56,14 +56,21 @@ Output: []
 
 
 ### Two Sum
+:star: if the array is sorted: -> use two pointe<br>
+:star: if the return value is the index: -> use HashMap
 #### Double Pointer
 Sort the array, use two pointers stragety(相向双指针)<br>
-Time Compelxity: O（nlogn)(排序) + O(n)(双指针) = O(nlogn)<br>
-Space Complexity: O(1)<br>
+- Time Compelxity: 
+    - unsorted array: O（nlogn)(排序) + O(n)(双指针) = O(nlogn)<br>
+    - sorted array: O(n)
+- Space Complexity: O(1)<br>
 
 <img src="image/2sum-pointer.png" width="850">
 
 #### HashTable
+- Time Compelxity: O(n)<br>
+- Space Complexity: O(n)<br>
+
 |            | map     | unordered_map |
 | ----------- | ----------- | ----------- |
 |Ordering |increasing  order (by default)| no ordering

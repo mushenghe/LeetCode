@@ -1,6 +1,6 @@
 # 3Sum - Leetcode 15
 Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? 
-Find all unique triplets in the array which gives the sum of zero.
+Find all unique triplets in the array which gives the sum of zero.<br>
 Notice that the solution set must not contain duplicate triplets.
 
 Example 1:
@@ -21,12 +21,12 @@ Output: []
   - [Double Pointer](#double-pointer)
   - [HashTable](#hashtable)
 
-- [ThreeSum](#three-sum)
-
+- [Three Sum](#three-sum)
+- [Four Sum](#four-sum)
 - [nSum](#n-sum)
 
 **Summary**
-- first use ```sort(arr.begin(), arr.end())``` to sort the unsorted array
+- first use ```sort(arr.begin(), arr.end())``` to sort the unsorted array (Time Complexity: O(nlogn))
 - to make sure the solution is unique, rememebr to move the pointer when meet duplicate number using stragety like this:
     ```
     // eliminate duplicate of first number of the triplets
@@ -46,31 +46,101 @@ Output: []
     :star: add ```lo < hi``` in the while loop to prevent the
             array to be out of range
 
+- C++ knowledge :point_down:
+    ```
+    std::pair<int,int> mypair;
+    mypair = std::make_pair(1,2);
+    int a = mypair.first;
+    int b = mypair.second;
+    ```
 
 
-- pytest
-- sklearn
-- pandas
-
-### TwoSum
-
-This project aims to identify how muscles are synergistically activated at the arm during a multi-joint task.
-
+### Two Sum
+:star: if the array is sorted: -> use two pointe<br>
+:star: if the return value is the index: -> use HashMap
 #### Double Pointer
+Sort the array, use two pointers stragety(相向双指针)<br>
+- Time Compelxity: 
+    - unsorted array: O（nlogn)(排序) + O(n)(双指针) = O(nlogn)<br>
+    - sorted array: O(n)
+- Space Complexity: O(1)<br>
 
-While seemingly simple, a motor task, such as retrieving an object from a high shelf, is very complicated. To achieve this task, movement-related signals are generated from the motor cortex of our brain and relayed to muscle fibers via motor neurons. In turn, muscles contract and the arm is raised and extended. There are more than 600 muscles in our body. Instead of controlling each muscle individually, our brain is thought to recruit these muscles in set groups. The activation of muscles in this grouped manner is termed muscle synergies and is part of a hierarchical control strategy. Activation of muscle synergies, rather than individual muscles, allows for a simplified control of one’s limb. In this work, the focus is on muscle activation at the arm. Specifically, the goal is to determine how muscles concurrently activate when an individual abducts at the shoulder and flexes at the elbow. As such, we can determine normal muscle activation patterns in a population that is neurologically and orthopaedically intact.
+<img src="image/2sum-pointer.png" width="850">
 
 #### HashTable
+- Time Compelxity: O(n)<br>
+- Space Complexity: O(n)<br>
 
-#### Three Sum
+|            | map     | unordered_map |
+| ----------- | ----------- | ----------- |
+|Ordering |increasing  order (by default)| no ordering
+|Implementation  | Self balancing BST( like Red-Black Tree )| Hash Table
+search time     | log(n)              | O(1) -> Average<br>O(n) -> Worst Case|
+|Insertion time  | log(n) + Rebalance  | Same as search|
+|Deletion time   | log(n) + Rebalance  | Same as search|
 
-<img src="src/image/readme/system.png" width="850">
+```
+vector<int> twoSum(vector<int>& numbers, int target) {
+	unordered_map<int, int> hash; //Number, Index
+        
+	for (int i = 0; i < numbers.size(); i++) {
+		int numberToFind = target - numbers[i];
 
-The experimental setup, as shown in Figure 3, was comprised of a custom mechatronic system, a monitor, speakers, and Biodex chair. The system acquires torque data from a six-degree-of-freedom load cell. The acquired data, in conjunction with a biomechanical model, indicate the extent to which the participant flexes about the testing elbow and abducts about the shoulder. In addition, the system quantifies muscle activity using eight surface electromyography (sEMG) electrodes (sEMG1: biceps, sEMG2: triceps lateral, sEMG3: anterior deltoid, sEMG4: medial deltoid, sEMG5: posterior deltoid, sEMG6: pectoralis major, sEMG7: lower trapezius, and sEMG8: middle trapezius). The sEMG signals indicate the electrical activity within each of the eight testing muscles. A DAQ card acquires data from these sensors, and a Matlab program streams the data. Data is collected at 1kHz.
+		if (hash.find(numberToFind) != hash.end()) 
+			return  {hash[numberToFind] ,i };
 
-#### n Sum
-<img src="src/image/readme/setup.png" width="850">
+		hash[numbers[i]] = i; //put number into the map
+	}
+	return {};
+    }
+```
+### Three Sum
+Traverse every number in sorted array to be the first number, use twoSum to compute the rest two numbers
+<img src="image/3sum.png" width="850">
 
-The participant was requested to not exercise the day before and of testing to avoid muscle fatigue. At the beginning of the testing session, the participant sat with their torso and waist strapped to the Biodex chair. The participant's testing arm was affixed to an isometric measurement device at 85° shoulder abduction, 40° shoulder flexion, and 90° elbow flexion.
+### Four Sum
+Traverse every number in sorted array as the first number, call three sum
+### n Sum
+```
+/* 注意：调用这个函数之前一定要先给 nums 排序 */
+vector<vector<int>> nSumTarget(
+    vector<int>& nums, int n, int start, int target) {
+    int sz = nums.size();
+    vector<vector<int>> res;
+    // 至少是 2Sum，且数组大小不应该小于 n
+    if (n < 2 || sz < n) return res;
+    // 2Sum 是 base case
+    if (n == 2) {
+        // 双指针那一套操作
+        int lo = start, hi = sz - 1;
+        while (lo < hi) {
+            int sum = nums[lo] + nums[hi];
+            int left = nums[lo], right = nums[hi];
+            if (sum < target) {
+                while (lo < hi && nums[lo] == left) lo++;
+            } else if (sum > target) {
+                while (lo < hi && nums[hi] == right) hi--;
+            } else {
+                res.push_back({left, right});
+                while (lo < hi && nums[lo] == left) lo++;
+                while (lo < hi && nums[hi] == right) hi--;
+            }
+        }
+    } else {
+        // n > 2 时，递归计算 (n-1)Sum 的结果
+        for (int i = start; i < sz; i++) {
+            vector<vector<int>> 
+                sub = nSumTarget(nums, n - 1, i + 1, target - nums[i]);
+            for (vector<int>& arr : sub) {
+                // (n-1)Sum 加上 nums[i] 就是 nSum
+                arr.push_back(nums[i]);
+                res.push_back(arr);
+            }
+            while (i < sz - 1 && nums[i] == nums[i + 1]) i++;
+        }
+    }
+    return res;
+}
 
-
+```
+n == 2 时是 twoSum 的双指针解法，n > 2 时就是穷举第一个数字，然后递归调用计算 (n-1)Sum，组装答案。

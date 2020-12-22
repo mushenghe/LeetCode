@@ -65,7 +65,7 @@ Sort the array, use two pointers stragety(相向双指针)<br>
     - sorted array: O(n)
 - Space Complexity: O(1)<br>
 
-<img src="image/2sum-pointer.png" width="850">
+<img src="image/2sum-pointer.png" width="550">
 
 #### HashTable
 - Time Compelxity: O(n)<br>
@@ -96,7 +96,7 @@ vector<int> twoSum(vector<int>& numbers, int target) {
 ```
 ### Three Sum
 Traverse every number in sorted array to be the first number, use twoSum to compute the rest two numbers
-<img src="image/3sum.png" width="850">
+<img src="image/3sum.png" width="550">
 
 ### Four Sum
 Traverse every number in sorted array as the first number, call three sum

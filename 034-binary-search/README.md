@@ -1,22 +1,31 @@
-# 3Sum - Leetcode 15
-Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? 
-Find all unique triplets in the array which gives the sum of zero.<br>
-Notice that the solution set must not contain duplicate triplets.
+# Binary Searrch - Leetcode 45
+Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.<br>
+If target is not found in the array, return [-1, -1].
 
 Example 1:
 
-Input: nums = [-1,0,1,2,-1,-4]
-Output: [[-1,-1,2],[-1,0,1]]
+Input: nums = [5,7,7,8,8,10], target = 8
+Output: [3,4]
 
 Example 2:
 
-Input: nums = []
-Output: []
+Input: nums = [5,7,7,8,8,10], target = 6
+Output: [-1,-1]
+
+Example 3:
+
+Input: nums = [], target = 0
+Output: [-1,-1]
 
 **stragety:** <br/>
-[from two Sum to n Sum](https://leetcode-cn.com/problems/3sum/solution/yi-ge-fang-fa-tuan-mie-by-labuladong/)
+- Binary Search Template
+```
+int BinarySearch (int[] nums, int target) {
+    if(nums.empty()) {return -1;}
+    int lPtr = 0, rPtr = nums.size() - 1
+}
 
-
+```
 - [TwoSum](#twosum)
   - [Double Pointer](#double-pointer)
   - [HashTable](#hashtable)
@@ -26,33 +35,9 @@ Output: []
 - [nSum](#n-sum)
 
 **Summary**
-- first use ```sort(arr.begin(), arr.end())``` to sort the unsorted array (Time Complexity: O(nlogn))
-- to make sure the solution is unique, rememebr to move the pointer when meet duplicate number using stragety like this:
-    ```cs
-    // eliminate duplicate of first number of the triplets
-    for (int i = 0; i <= nums.size() - 3; i++) {
-        if (i > 0 && nums[i] == nums[i-1]) {
-                continue;
-        }
-        ....
-    // elimate duplicate in twoSum
-    1) in while loop, store the left and right value
-        if (sum < target) {
-            while (lo < hi && nums[lo] == left) lo++;
-        } 
-    }
-    ```
-    :star: the usage of ```continue``` <br>
-    :star: add ```lo < hi``` in the while loop to prevent the
-            array to be out of range
 
-- C++ knowledge :point_down:
-    ```
-    std::pair<int,int> mypair;
-    mypair = std::make_pair(1,2);
-    int a = mypair.first;
-    int b = mypair.second;
-    ```
+:star: use ```lPtr ```in stead of ```left``` to prevent the case that mix the use of nums[left] and ```left``` <br>
+:star: The utility of **while(```start + 1 < end```)** and also updating the mPtr to be lPtr/rPtr all to prevent ??runtime errors
 
 
 ### Two Sum
@@ -79,7 +64,7 @@ search time     | log(n)              | O(1) -> Average<br>O(n) -> Worst Case|
 |Insertion time  | log(n) + Rebalance  | Same as search|
 |Deletion time   | log(n) + Rebalance  | Same as search|
 
-```cs
+```
 vector<int> twoSum(vector<int>& numbers, int target) {
 	unordered_map<int, int> hash; //Number, Index
         
@@ -101,7 +86,7 @@ Traverse every number in sorted array to be the first number, use twoSum to comp
 ### Four Sum
 Traverse every number in sorted array as the first number, call three sum
 ### n Sum
-```cs
+```
 /* 注意：调用这个函数之前一定要先给 nums 排序 */
 vector<vector<int>> nSumTarget(
     vector<int>& nums, int n, int start, int target) {

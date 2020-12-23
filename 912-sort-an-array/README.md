@@ -29,29 +29,30 @@ Divide and Conquer
 |Bubble Sort|	O(n)|	O(n^2)|	O(n^2)	 |
 |Insertion Sort|	O(n)|	O(n^2)|	O(n^2)	 |
 |:star: Heap Sort|	O(n log(n))|	O(n log(n))|	O(n log(n))	 |
-|:star:Quick Sort|	O(n log(n))|	O(n log(n))|	O(n^2)	 |
-|:star:Merge Sort|	O(n log(n))|	O(n log(n))|	O(n log(n))	 |
+|:star: Quick Sort|	O(n log(n))|	O(n log(n))|	O(n^2)	 |
+|:star: Merge Sort|	O(n log(n))|	O(n log(n))|	O(n log(n))	 |
 
 
 
 ### Quick Sort
-Time Complexity: O(nlogn) worst case: O(n^2)<br>
-Space Complexity: O(1)
+**Time Complexity:** O(nlogn) worst case: O(n^2)<br>
+**Space Complexity:** O(1)
 - Accrually faster then merge sort because merge sort needs allocating extra space.
 
-:star: define pivot as the value not the index, choose to be middle
+:star: define pivot as the value not the index, choose to be middle<br>
 :star: compare left and right pointer: **<=**<br>
-:star: compare left/right with pivot: **<**
+:star: compare left/right with pivot: **<**<br>
 :star: remember to check if ```lPtr <= rPtr``` in while loop before swap
 #### Merge Sort
-3 steps: Divide, Conquer, Combine
+3 steps: Divide, Conquer, Combine<br>
+**Time Complexity:** O(nlogn) + O(n) = O(nlogn) <br>
+**Space complexity:** O(n)<br>
+It's much stable compared with quick sort
 
-Divide: 
+Divide: <br>
 <img src="image/merge_sort_merge.png" width="550"><br>
-Combine:
+Combine:<br>
 <img src="image/merge_sort_split.png" width="550">
 
-Time Complexity: O(nlogn) + O(n) = O(nlogn) <br>
-Space complexity: O(n)<br>
-It's much stable compared with quick sort
+
 

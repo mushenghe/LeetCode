@@ -17,7 +17,7 @@ Output: []
 [from two Sum to n Sum](https://leetcode-cn.com/problems/3sum/solution/yi-ge-fang-fa-tuan-mie-by-labuladong/)
 
 
-- [TwoSum](#twosum)
+- [TwoSum](#two-sum)
   - [Double Pointer](#double-pointer)
   - [HashTable](#hashtable)
 

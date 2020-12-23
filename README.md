@@ -11,7 +11,12 @@
 ### Big 0
 - For very large input size
 - For worst case scenario
+
+Time complexity prioritized over space complexity for:
+- Costs to **produce** and **run** processors are much **higher** compared to RAM
+- Consumers / Users in general care more about speed than RAM usage
 #### Time Complexity
+Hoe much more **runtime** do we need as the inputs provided to the code gets larger <br>
 <img src="image/timeo.png" width="550"><br>
 :star: Drop lower order terms<br>
 :star: Drop all the constant multipliers
@@ -40,14 +45,6 @@
 
 
 #### Space Complexity
-3 steps: Divide, Conquer, Combine
-
-Divide: 
-<img src="image/merge_sort_merge.png" width="550"><br>
-Combine:
-<img src="image/merge_sort_split.png" width="550">
-
-Time Complexity: O(nlogn) + O(n) = O(nlogn) <br>
-Space complexity: O(n)<br>
-It's much stable compared with quick sort
-
+How much more **memory use (RAM)** do we need as teh inputs provided to the code gets larger<br>
+:star: Primitives (Booleans and NUmers) take up O(1)<br>
+:star: String, Arrays, and Objects take up O(n)
